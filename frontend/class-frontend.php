@@ -1243,7 +1243,8 @@ class WPSEO_Frontend {
 
 		if ( $echo !== false ) {
 			if ( is_string( $this->metadesc ) && $this->metadesc !== '' ) {
-				echo '<meta name="description" content="', esc_attr( strip_tags( stripslashes( $this->metadesc ) ) ), '"/>', "\n";
+				$metadescWithAmpersand = str_replace('&amp;', '&', esc_attr( strip_tags( stripslashes( $this->metadesc ) ) ));
+				echo '<meta name="description" content="', $metadescWithAmpersand, '"/>', "\n";
 				$this->add_robot_content_noodp( $this->metadesc );
 			}
 			elseif ( current_user_can( 'manage_options' ) && is_singular() ) {
